@@ -1121,11 +1121,18 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // End Accrediation Jss
 
-
+// Swatch Hover Product Image Change
 document.addEventListener('DOMContentLoaded', function () {
     const swatches = document.querySelectorAll('.evp-grid-swatch');
 
     swatches.forEach(swatch => {
+        const imageURL = swatch.getAttribute('data-variation-image');
+        if (imageURL) {
+            // ✅ Preload image in advance
+            const preloadImg = new Image();
+            preloadImg.src = imageURL;
+        }
+
         swatch.addEventListener('mouseenter', function () {
             const imageURL = this.getAttribute('data-variation-image');
             if (!imageURL) return;
@@ -1135,7 +1142,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const img = productCard.querySelector('img.wp-post-image');
             if (img) {
-                img.setAttribute('data-original-src', img.src); // store original
+                img.setAttribute('data-original-src', img.src);
+                img.removeAttribute('srcset');
+                img.removeAttribute('sizes');
+
+                // ✅ No ?t= used now, since we preload the image
                 img.src = imageURL;
             }
         });
@@ -1146,9 +1157,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const img = productCard.querySelector('img.wp-post-image');
             if (img && img.hasAttribute('data-original-src')) {
+                img.removeAttribute('srcset');
+                img.removeAttribute('sizes');
                 img.src = img.getAttribute('data-original-src');
                 img.removeAttribute('data-original-src');
             }
         });
     });
 });
+
