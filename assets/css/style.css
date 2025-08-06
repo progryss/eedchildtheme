@@ -3274,6 +3274,12 @@ body.noscroll {
 .custom-archive-page ul.products li .evp-grid-swatches.has-more:after {
   border: 1px solid var(--black-color) !important;
 }
+.related.products ul.products li .evp-grid-swatches a:first-child,
+.custom-collection-page ul.products li .evp-grid-swatches a:first-child,
+.custom-shop-page ul.products li .evp-grid-swatches a:first-child,
+.custom-archive-page ul.products li .evp-grid-swatches a:first-child {
+  margin-left: -8px;
+}
 .related.products ul.products li .add_to_cart_button,
 .related.products ul.products li .product_type_variable,
 .custom-collection-page ul.products li .add_to_cart_button,
@@ -4781,6 +4787,46 @@ body.sales-contact-modal-open {
 }
 .result-and-perpage-wrap .per-page-dropdown form {
   margin-bottom: 0;
+}
+
+@media (min-width: 1025px) {
+  .sorted-mega-menu:hover .top-level-child-box {
+    display: block !important;
+  }
+  .sorted-mega-menu .top-level-child-box {
+    grid-template-columns: auto !important;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .sorted-mega-menu .top-level-child-box .left-box {
+    padding: 15px;
+  }
+  .sorted-mega-menu .top-level-child-box .left-box .depth-1-children {
+    columns: auto 6;
+  }
+  .sorted-mega-menu .top-level-child-box .left-box .depth-1-children li a:hover {
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+  }
+  .sorted-mega-menu .top-level-child-box .left-box .depth-1-children li.sorted-text a {
+    cursor: default;
+    font-family: "Arial Rounded MT Pro - Bold", sans-serif;
+    font-size: 20px !important;
+  }
+  .sorted-mega-menu .top-level-child-box .left-box .depth-1-children li.sorted-text a:hover {
+    background: transparent !important;
+    border: 1px solid transparent !important;
+  }
+  .sorted-mega-menu .top-level-child-box .middle-box, .sorted-mega-menu .top-level-child-box .right-box {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .sorted-text a {
+    cursor: default;
+    font-family: "Arial Rounded MT Pro - Bold", sans-serif;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

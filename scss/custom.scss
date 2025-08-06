@@ -2084,7 +2084,6 @@ header:not(.site-main header),
           }
         }
       }
-
     }
   }
 }
@@ -3777,7 +3776,7 @@ body.noscroll {
 
         a {
           &:first-child {
-            // margin-left: -8px;
+            margin-left: -8px;
           }
         }
       }
@@ -5651,4 +5650,55 @@ content:none;
       margin-bottom: 0;
     }
   }
+}
+   //Start Sorted Mega Menu CSS
+@media(min-width:1025px){
+      .sorted-mega-menu{
+        &:hover{
+          .top-level-child-box{
+            display:block!important;
+          }
+        }
+        .top-level-child-box{
+          grid-template-columns:auto!important;
+          padding: 0;
+          overflow-y: auto;
+        overflow-x: hidden;
+          .left-box{
+            padding:15px;
+            .depth-1-children{
+              columns:auto 6;
+              li{
+                a:hover{
+                  border:1px solid var(--border-color)!important;
+                  border-radius:8px!important;
+                }
+                &.sorted-text{
+                a{
+                     cursor: default;
+                    font-family: $font-bold;
+                    font-size:20px!important;
+                }
+                  a:hover{
+                    background: transparent !important;;
+                    border: 1px solid transparent !important;
+                  }
+
+              }
+              }
+            }
+          }
+          .middle-box,.right-box{
+            display:none;
+          }
+        }
+      }
+}
+@media(max-width:767px){
+.sorted-text{
+a{
+cursor: default;
+font-family: $font-bold;
+}
+}
 }
