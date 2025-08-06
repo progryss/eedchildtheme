@@ -26,7 +26,7 @@ function custom_storefront_widgets_init() {
     }
 
     // Register the new 6 footer widget areas
-    for ( $i = 1; $i <= 6; $i++ ) {
+    for ( $i = 1; $i <= 5; $i++ ) {
         register_sidebar( array(
             'name'          => sprintf( __( 'Footer %d', 'storefront' ), $i ),
             'id'            => 'footer-' . $i,

@@ -28,7 +28,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="footer-widgets custom-footer-widgets col-full">
 				<div class="footer-widgets-row">
-					<?php for ( $i = 1; $i <= 6; $i++ ) : ?>
+					<?php for ( $i = 1; $i <= 5; $i++ ) : ?>
 						<div class="col footer-col-<?php echo $i; ?>">
 							<?php if ( is_active_sidebar( 'footer-' . $i ) ) : ?>
 								<?php dynamic_sidebar( 'footer-' . $i ); ?>
