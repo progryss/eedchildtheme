@@ -4610,15 +4610,15 @@ body.sales-contact-modal-open {
 }
 
 .woocommerce-info {
-  background-color: #f8f9fa;
-  border-left: 4px solid #00a591;
-  padding: 40px 20px;
-  margin-bottom: 20px;
-  border-radius: 4px;
-  clear: both;
+  background-color: #f8f9fa !important;
+  border-left: 4px solid #00a591 !important;
+  padding: 40px 20px !important;
+  margin-bottom: 20px !important;
+  border-radius: 4px !important;
+  clear: both !important;
   display: block;
   width: 100%;
-  color: #000000;
+  color: #000000 !important;
 }
 .woocommerce-info p {
   font-family: "Arial Rounded MT Pro - Bold", sans-serif;
@@ -4655,7 +4655,7 @@ body.sales-contact-modal-open {
   background: var(--primary-color) !important;
 }
 .woocommerce-info:before {
-  content: none;
+  content: none !important;
 }
 
 .accreditation-modal-main {
@@ -4766,27 +4766,43 @@ body.sales-contact-modal-open {
   display: block;
 }
 
-.result-and-perpage-wrap {
+.sorting-1 .result-and-perpage-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
   flex-wrap: wrap;
   flex-direction: row-reverse;
 }
-.result-and-perpage-wrap .per-page-dropdown select,
-.result-and-perpage-wrap .per-page-dropdown select:focus,
-.result-and-perpage-wrap .per-page-dropdown select:focus-visible {
-  padding: 6px 10px;
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown select,
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown select:focus,
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown select:focus-visible {
+  padding: 6px;
   font-size: 14px;
   border: 1px solid #ccc;
   outline: none;
 }
-.result-and-perpage-wrap .per-page-dropdown label {
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown label {
   font-weight: 500;
 }
-.result-and-perpage-wrap .per-page-dropdown form {
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown form {
   margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown form .one-label {
+  margin-right: 8px;
+}
+.sorting-1 .result-and-perpage-wrap .per-page-dropdown form .two-label {
+  margin-left: 8px;
+}
+@media (max-width: 515px) {
+  .sorting-1 {
+    display: block !important;
+  }
+  .sorting-1 .result-and-perpage-wrap {
+    margin-top: 30px;
+  }
 }
 
 @media (min-width: 1025px) {

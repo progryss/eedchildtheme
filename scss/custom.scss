@@ -172,6 +172,7 @@ a:focus {
 p+h2, p+header h2, p+h3, p+h4, ul+h2, ul+header h2, ul+h3, ul+h4, ol+h2, ol+header h2, ol+h3, ol+h4, table+h2, table+header h2, table+h3, table+h4, blockquote+h2, blockquote+header h2, blockquote+h3, blockquote+h4, form+h2, form+header h2, form+h3, form+h4 {
     margin-top:15px;
 }
+
 .custom-tooltip-swatches {
   position: absolute;
   z-index: 9999;
@@ -5464,16 +5465,15 @@ body:not(.woocommerce-cart) .woocommerce-message {
 	padding:0 0!important
 }
 .woocommerce-info{
-
-background-color: #f8f9fa;
-border-left: 4px solid #00a591;
-padding: 40px 20px;
-margin-bottom: 20px;
-border-radius: 4px;
-clear: both;
+background-color: #f8f9fa !important;
+border-left: 4px solid #00a591 !important;
+padding: 40px 20px !important;
+margin-bottom: 20px !important;
+border-radius: 4px !important;
+clear: both !important;
 display: block;
 width: 100%;
-color:#000000;
+color: #000000 !important;
 	p{
 font-family: "Arial Rounded MT Pro - Bold", sans-serif;
 		margin-bottom:20px;
@@ -5511,7 +5511,7 @@ background: var(--primary-color) !important;
 }
 }
 &:before{
-content:none;
+content:none!important;
 }
 }
 // End Wocommerce Info css
@@ -5624,11 +5624,12 @@ content:none;
 }
 // End Accrediation CSS
 
+.sorting-1{
 .result-and-perpage-wrap {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 8px;
   flex-wrap: wrap;
   flex-direction: row-reverse;
 
@@ -5636,11 +5637,12 @@ content:none;
     select,
     select:focus,
     select:focus-visible {
-      padding: 6px 10px;
+      padding:6px;
       font-size: 14px;
       border: 1px solid #ccc;
       outline:none;
     }
+  
 
     label {
       font-weight: 500;
@@ -5648,8 +5650,23 @@ content:none;
 
     form {
       margin-bottom: 0;
+      display: flex;
+       align-items: center;
+       .one-label{
+        margin-right: 8px;
+       }
+       .two-label{
+        margin-left: 8px;
+       }
     }
   }
+}
+@media(max-width:515px){
+ display:block!important; 
+ .result-and-perpage-wrap{
+  margin-top:30px;
+ }
+}
 }
    //Start Sorted Mega Menu CSS
 @media(min-width:1025px){

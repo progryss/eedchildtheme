@@ -41,8 +41,12 @@ $paragraph = $card["paragraph"] ?? '';
 $button = $card["button"] ?? '';
 $button_background_color = $card["button_background_color"] ?? '';
 $button_text_color = $card["button_text_color"] ?? '';
+$banner_link = $card["banner_link"] ?? '';
+$has_link = $choose_banner_type === 'slider' && !empty($banner_link['url']);
 ?>
-
+<?php if ($has_link && !is_admin()): ?>
+  <a href="<?php echo $banner_link['url']; ?>" class="banner-link-wrapper">
+<?php endif; ?>
       <div class="banner-section">
       <img class="mobile-visible" src="<?php echo $mobile_image['url']; ?>" alt="" />
         <img class="desktop-visible" src="<?php echo $desktop_image['url']; ?>" alt="" />
@@ -73,6 +77,9 @@ $button_text_color = $card["button_text_color"] ?? '';
           <?php endif; ?>
         </div>
       </div>
+      <?php if ($has_link): ?>
+  </a>
+<?php endif; ?>
     <?php endforeach; ?>
   <?php endif; ?>
 </div>
@@ -333,7 +340,7 @@ margin-top: 1px !important;
 jQuery(document).ready(function($) {
     $('.banner-section-main').slick({
       autoplay: true,
-      autoplaySpeed: 300000000,
+      autoplaySpeed: 3000,
       arrows: true,
       dots: false,
       slidesToShow: 1,

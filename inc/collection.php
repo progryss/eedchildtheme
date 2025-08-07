@@ -56,18 +56,20 @@ remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 add_action( 'woocommerce_before_shop_loop', 'custom_result_and_per_page_wrapper', 20 );
 
 function custom_result_and_per_page_wrapper() {
-    echo '<div class="result-and-perpage-wrap" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">';
+    echo '<div class="result-and-perpage-wrap">';
 
-    // WooCommerce result count
-    woocommerce_result_count();
+    // ✅ Custom Result Count (Only total results)
+    global $wp_query;
+    $total = $wp_query->found_posts;
+    echo '<p class="woocommerce-result-count">(' . $total . ' results)</p>';
 
-    // Custom per-page dropdown
+    // ✅ Custom per-page dropdown
     $options = get_default_per_page_options();
     $per_page = isset($_GET['products_per_page']) ? (int) $_GET['products_per_page'] : $options[0];
 
     echo '<div class="per-page-dropdown">';
-    echo '<form method="GET" style="display: flex; align-items: center;">';
-    echo '<label for="products_per_page" style="margin-right: 8px;">View per page</label>';
+    echo '<form method="GET">';
+    echo '<label for="products_per_page" class="one-label">View</label>';
     echo '<select name="products_per_page" id="products_per_page" onchange="this.form.submit()">';
 
     foreach ( $options as $option ) {
@@ -83,11 +85,13 @@ function custom_result_and_per_page_wrapper() {
     }
 
     echo '</select>';
+    echo '<label for="products_per_page" class="two-label">per page </label>';
     echo '</form>';
     echo '</div>';
 
     echo '</div>';
 }
+
 
 // Step 3: Respect per-page selection
 add_filter( 'loop_shop_per_page', 'custom_loop_shop_per_page', 20 );
@@ -103,7 +107,7 @@ function custom_loop_shop_per_page( $cols ) {
 // Step 4: Helper function for options
 function get_default_per_page_options() {
     $columns = absint( get_theme_mod( 'storefront_products_per_row', 4 ) );
-    $rows    = absint( get_theme_mod( 'storefront_rows_per_page', 1 ) );
+    $rows    = absint( get_theme_mod( 'storefront_rows_per_page', 4 ) );
     $base = $columns * $rows;
 
     return [ $base, $base * 2, $base * 3, $base * 4 ];
