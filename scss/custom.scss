@@ -173,6 +173,10 @@ p+h2, p+header h2, p+h3, p+h4, ul+h2, ul+header h2, ul+h3, ul+h4, ol+h2, ol+head
     margin-top:15px;
 }
 
+#dynamic-header-info,#dynamic-header-info-mobile{
+  font-size:12px;
+  white-space:nowrap;
+}
 .custom-tooltip-swatches {
   position: absolute;
   z-index: 9999;

@@ -60,29 +60,8 @@ function custom_storefront_header_layout()
                     <div class="login-account"><a
                             href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>">Your
                             Account</a></div>
-                    <!-- <div class="login-register"><a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>">Login / Register</a></div> -->
 
-<?php
-// Show user name or login/register link
-if (is_user_logged_in()) {
-    $current_user = wp_get_current_user();
-    $first_name = get_user_meta($current_user->ID, 'first_name', true);
-    $account_url = get_permalink(get_option('woocommerce_myaccount_page_id'));
-    ?>
-    <div class="login-register">
-        <a href="<?php echo $account_url; ?>">
-            Welcome, <strong><?php echo $first_name ? esc_html($first_name) : esc_html($current_user->user_login); ?></strong>!
-        </a>
-    </div>
-    <?php
-} else {
-    ?>
-    <div class="login-register">
-        <a href="<?php echo get_permalink(get_option('woocommerce_myaccount_page_id')); ?>">Login / Register</a>
-    </div>
-    <?php
-}
-?>
+                    <div id="dynamic-header-info">Loading...</div>
 
 
                 </div>
@@ -116,24 +95,7 @@ if (is_user_logged_in()) {
                 <?php storefront_site_branding(); ?>
             </div>
             <div class="header-icons">
-                <!-- <a href="<?php echo esc_url(get_permalink(get_option('woocommerce_myaccount_page_id'))); ?>" class="sign-in">Sign in / Register</a> -->
-<?php
-$account_url = get_permalink(get_option('woocommerce_myaccount_page_id'));
-
-if (is_user_logged_in()) {
-    $current_user = wp_get_current_user();
-    $first_name = get_user_meta($current_user->ID, 'first_name', true);
-    ?>
-    <a href="<?php echo $account_url; ?>" class="sign-in">
-        Welcome, <strong><?php echo $first_name ? $first_name : $current_user->user_login; ?></strong>
-    </a>
-    <?php
-} else {
-    ?>
-    <a href="<?php echo $account_url; ?>" class="sign-in">Sign in / Register</a>
-    <?php
-}
-?>
+                <div id="dynamic-header-info-mobile">Loading...</div>
 
 
                 <a href="<?php echo esc_url(wc_get_cart_url()); ?>" class="cart-icon">
@@ -152,7 +114,22 @@ if (is_user_logged_in()) {
             <?php storefront_product_search(); ?>
         </div>
     </div>
+<script>
+  fetch('/wp-admin/admin-ajax.php?action=load_dynamic_header&_=' + Date.now())
+    .then(res => res.text())
+    .then(html => {
+      const desktopDiv = document.getElementById('dynamic-header-info');
+      const mobileDiv = document.getElementById('dynamic-header-info-mobile');
 
+      if (desktopDiv) {
+        desktopDiv.innerHTML = html;
+      }
+
+      if (mobileDiv) {
+        mobileDiv.innerHTML = html;
+      }
+    });
+</script>
     <?php
 }
 add_action('storefront_header', 'custom_storefront_header_layout', 20);
@@ -383,3 +360,23 @@ function custom_after_header_announcement_bar()
 }
 // End After Header Announcement Bar
 
+// Start Login Logout
+remove_action( 'storefront_header', 'storefront_header_cart', 60 );
+
+add_action('wp_ajax_load_dynamic_header', 'load_dynamic_header_ajax');
+add_action('wp_ajax_nopriv_load_dynamic_header', 'load_dynamic_header_ajax');
+
+function load_dynamic_header_ajax() {
+    ob_start();
+
+    if ( is_user_logged_in() ) {
+        $user = wp_get_current_user();
+        $greeting = 'Hi, <strong>' . esc_html( $user->display_name ) . '</strong>';
+        echo '<div class="header-user login-register">' . $greeting . ' | <a href="' . esc_url( wp_logout_url( home_url() ) ) . '">Logout</a></div>';
+    } else {
+        echo '<div class="header-user login-register"><a href="/my-account/">Login</a> / <a href="/my-account/">Register</a></div>';
+    }
+
+    wp_die(ob_get_clean());
+}
+// End Login Logout

@@ -57,7 +57,3 @@ require_once get_stylesheet_directory() . '/inc/collection.php';
 require_once get_stylesheet_directory() . '/inc/archive.php';
 
 
-
-
-
-
